@@ -1,28 +1,42 @@
 ﻿using System;
+using System.Data;
 using Grasshopper.Kernel;
 
 namespace EnneadTabForGH
 {
     public class MyFirstComponent : GH_Component
     {
-        public MyFirstComponent() : base("MyFirst", "MFC", "My first component", "Extra", "Simple")
+        public MyFirstComponent() : base("MyFirst", "MFC", "My first component", "EnneadTab", "Util")
         {
 
         }
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            throw new NotImplementedException();
+            pManager.AddTextParameter("String", "S", "String to reverse", GH_ParamAccess.item);
+            // throw new NotImplementedException();
         }
 
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            throw new NotImplementedException();
+            pManager.AddTextParameter("Reversed", "R", "Reversed string", GH_ParamAccess.item);
+            // throw new NotImplementedException();
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            throw new NotImplementedException();
+            string data = null;
+            if (!DA.GetData(0, ref data)) {  return; }
+
+            if (data == null) { return; }
+            if (data.Length == 0) { return; }
+
+            char[] chars = data.ToCharArray();
+            Array.Reverse(chars);
+
+            DA.SetData(0, new string(chars));
+
+            // throw new NotImplementedException();
         }
 
         public override Guid ComponentGuid
