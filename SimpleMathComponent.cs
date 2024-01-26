@@ -23,6 +23,9 @@ namespace EnneadTabForGH
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
+            pManager.AddNumberParamerter("Angle", "A", "The angle to measure", GH_ParamAccess.item);
+            pManager.AddBooleanParameter("Radians", "R", "True for radians, False for degrees", GH_ParamAccess.item, true);
+
         }
 
         /// <summary>
