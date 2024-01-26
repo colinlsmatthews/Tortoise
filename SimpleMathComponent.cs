@@ -24,7 +24,7 @@ namespace EnneadTabForGH
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddNumberParamerter("Angle", "A", "The angle to measure", GH_ParamAccess.item);
-            pManager.AddBooleanParameter("Radians", "R", "True for radians, False for degrees", GH_ParamAccess.item, true);
+            pManager.AddBooleanParameter("Radians", "R", "Work in Radians", GH_ParamAccess.item, true);
 
         }
 
@@ -44,6 +44,23 @@ namespace EnneadTabForGH
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            double angle = double.NaN;
+            bool radians = false;
+
+            if (!DA.GetData(0, ref angle)) { return; }
+            if (!DA.GetData(1, ref radians)) { return; }
+
+            if (!Rhino.RhinoMath.IsValidDouble(angle)) { return; }
+
+            if (radians)
+            {
+                angle = Rhino.RhinoMath.ToRadians(angle);
+            }
+
+            DA.SetData(0, Math.Sin(angle));
+            DA.SetData(1, Math.Cos(angle));
+            DA.SetData(2, Math.Tan(angle));
+
         }
 
         /// <summary>
