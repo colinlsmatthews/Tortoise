@@ -12,9 +12,9 @@ namespace EnneadTabForGH
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public SimpleMathComponent()
-          : base("MyComponent1", "Nickname",
-              "Description",
-              "Category", "Subcategory")
+          : base("Simple Math Component", "SimpleMath",
+              "SinCosTan",
+              "EnneadTab", "Util")
         {
         }
 
@@ -23,7 +23,7 @@ namespace EnneadTabForGH
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddNumberParamerter("Angle", "A", "The angle to measure", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Angle", "A", "The angle to measure", GH_ParamAccess.item);
             pManager.AddBooleanParameter("Radians", "R", "Work in Radians", GH_ParamAccess.item, true);
 
         }
