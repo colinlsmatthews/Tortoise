@@ -6,7 +6,7 @@ namespace EnneadTabForGH
 {
     public class MyFirstComponent : GH_Component
     {
-        public MyFirstComponent() : base("MyFirst", "MFC", "My first component", "EnneadTab", "Util")
+        public MyFirstComponent() : base("MyFirst", "MFC", "My first component", "Ennead", "Util")
         {
 
         }
