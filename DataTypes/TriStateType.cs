@@ -30,7 +30,7 @@ namespace EnneadTabForGH.DataTypes
         }
 
         // Constructor with initial value of type string
-        public TriStateType TriStateType(string triStateValue)
+        public TriStateType(string triStateValue)
         {
             switch (triStateValue.ToUpperInvariant())
             {
@@ -56,7 +56,6 @@ namespace EnneadTabForGH.DataTypes
                     this.Value = -1;
                     break;
             }
-            return this;
         }
 
         // Constructor with initial value of type bool
@@ -71,7 +70,7 @@ namespace EnneadTabForGH.DataTypes
         public TriStateType(double triStateValue)
         {
             if (triStateValue > 0) { this.Value = 1; }
-            else if (triStateValue = 0) { this.Value = 0; }
+            else if (triStateValue == 0) { this.Value = 0; }
             else { this.Value = -1; }
         }
 

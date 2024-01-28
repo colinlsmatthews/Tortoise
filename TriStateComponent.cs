@@ -42,23 +42,29 @@ namespace EnneadTabForGH
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            // Declare placeholder variable and assign invalid data.
-            // Will cause abort when not supplied with valid data.
-            var input = object.Unset;
-
-            // Retrieve input data
-            if (!DA.GetData(0, ref input)) { return; }
-            if (typeof(input) != typeof(string) || 
-                typeof(input) != typeof(int) || 
-                typeof(input) != typeof(double) ||
-                typeof(input) != typeof(bool))
-            {
-                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Input must be a string, integer, or double");
-                return;
-            }
+            //var inputType = DA.GetType();
+            // Create invalid data for input var
+            //var input = "0";
+            //DA.GetData(0, ref input);
+            //string inputTypeString = inputType.ToString();
+            //switch (inputTypeString)
+            //{
+            //    case "System.String":                                    
+            //    case "System.Int32":
+            //    case "System.Double":
+            //    case "System.Boolean":
+            //        DA.SetData(0, new TriStateType(input));
+            //        break;
+            //    default:
+            //        // Set error message
+            //        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Input type not supported");
+            //        break;
+            //}
+            string input = "";
+            DA.GetData(0, ref input);
 
             // Create a new TriStateType instance
-            TriStateType tri = new TriStateType(input))
+            TriStateType tri = new TriStateType(input);
 
         }
 
