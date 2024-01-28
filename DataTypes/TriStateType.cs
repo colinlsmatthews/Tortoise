@@ -23,10 +23,56 @@ namespace EnneadTabForGH.DataTypes
             this.Value = -1;
         }
 
-        // Constructor with intial value
+        // Constructor with intial value of type int
         public TriStateType(int triStateValue)
         {
             this.Value = triStateValue;
+        }
+
+        // Constructor with initial value of type string
+        public TriStateType TriStateType(string triStateValue)
+        {
+            switch (triStateValue.ToUpperInvariant())
+            {
+                case "TRUE":
+                case "T":
+                case "YES":
+                case "Y":
+                    this.Value = 1;
+                    break;
+
+                case "FALSE":
+                case "F":
+                case "NO":
+                case "N":
+                    this.Value = 0;
+                    break;
+
+                case "UNKNOWN":
+                case "UNSET":
+                case "MAYBE":
+                case "DUNNO":
+                case "?":
+                    this.Value = -1;
+                    break;
+            }
+            return this;
+        }
+
+        // Constructor with initial value of type bool
+        public TriStateType(bool triStateValue)
+        {
+            if (triStateValue) { this.Value = 1; }
+            if (!triStateValue) { this.Value = 0; }
+            else { this.Value = -1; }
+        }
+
+        // Constructor with initial value of type double
+        public TriStateType(double triStateValue)
+        {
+            if (triStateValue > 0) { this.Value = 1; }
+            else if (triStateValue = 0) { this.Value = 0; }
+            else { this.Value = -1; }
         }
 
         // Copy Constructor
@@ -111,7 +157,7 @@ namespace EnneadTabForGH.DataTypes
             return this.Value;
         }
 
-        // This functino is called when Grasshopper needs to convert this
+        // This function is called when Grasshopper needs to convert this
         // instance of TriStateType into some other type Q
         public override bool CastTo<Q>(ref Q target)
         {
