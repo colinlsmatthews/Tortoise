@@ -8,12 +8,12 @@ using EnneadTabForGH.DataTypes;
 
 namespace EnneadTabForGH
 {
-    public class DataTypeComponent : GH_Component
+    public class TriStateComponent : GH_Component
     {
         /// <summary>
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
-        public DataTypeComponent()
+        public TriStateComponent()
           : base("TriState Conversion", "TriState",
               "Converts strings and numbers to a tri-state value: \"True\",\"False\", or \"Unknown\"",
               "Ennead", "Util")
@@ -42,7 +42,24 @@ namespace EnneadTabForGH
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            
+            // Declare placeholder variable and assign invalid data.
+            // Will cause abort when not supplied with valid data.
+            var input = object.Unset;
+
+            // Retrieve input data
+            if (!DA.GetData(0, ref input)) { return; }
+            if (typeof(input) != typeof(string) || 
+                typeof(input) != typeof(int) || 
+                typeof(input) != typeof(double) ||
+                typeof(input) != typeof(bool))
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Input must be a string, integer, or double");
+                return;
+            }
+
+            // Create a new TriStateType instance
+            TriStateType tri = new TriStateType(input))
+
         }
 
         /// <summary>
