@@ -29,6 +29,11 @@ namespace EnneadTabForGH.DataTypes
             this.Value = triStateValue;
         }
 
+        public TriStateType(Grasshopper.Kernel.Types.GH_Integer triStateValue)
+        {
+            this.Value = triStateValue;
+        }
+
         // Constructor with initial value of type string
         public TriStateType(string triStateValue)
         {
