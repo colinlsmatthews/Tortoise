@@ -5,6 +5,7 @@ using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using EnneadTabForGH.DataTypes;
+using Microsoft.CSharp;
 
 namespace EnneadTabForGH
 {
@@ -34,6 +35,7 @@ namespace EnneadTabForGH
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.Register_GenericParam("TriState", "T", "TriState value of the input");
+            pManager.Register_GenericParam("Hard-coded TriState", "TT", "Hard-coded TriState value");
         }
 
         /// <summary>
@@ -42,30 +44,35 @@ namespace EnneadTabForGH
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            //var inputType = DA.GetType();
-            // Create invalid data for input var
-            //var input = "0";
-            //DA.GetData(0, ref input);
-            //string inputTypeString = inputType.ToString();
-            //switch (inputTypeString)
-            //{
-            //    case "System.String":                                    
-            //    case "System.Int32":
-            //    case "System.Double":
-            //    case "System.Boolean":
-            //        DA.SetData(0, new TriStateType(input));
-            //        break;
-            //    default:
-            //        // Set error message
-            //        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Input type not supported");
-            //        break;
-            //}
-            string input = "";
-            DA.GetData(0, ref input);
+            // Use dynamic type to handle different input types
+            dynamic input = null;
+            if (!DA.GetData(0, ref input))
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "No input provided");
+                return;
+            }
 
-            // Create a new TriStateType instance
-            TriStateType tri = new TriStateType(input);
-
+            // Determine the input type
+            string inputTypeString = input.GetType().ToString();
+            switch (inputTypeString)
+            {
+                case "System.String":
+                case "System.Int32":
+                case "System.Double":
+                case "System.Boolean":
+                case "Grasshopper.Kernel.Types.GH_String":
+                case "Grasshopper.Kernel.Types.GH_Integer":
+                case "Grasshopper.Kernel.Types.GH_Number":
+                case "Grasshopper.Kernel.Types.GH_Boolean":
+                    // Create and set a new TriStateType instance based on the input
+                    TriStateType tri = new TriStateType(input);
+                    DA.SetData(0, tri);
+                    break;
+                default:
+                    // Set error message for unsupported types
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Input type not supported");
+                    break;
+            }
         }
 
         /// <summary>
