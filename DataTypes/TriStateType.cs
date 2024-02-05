@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Math;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -12,77 +13,55 @@ namespace EnneadTabForGH.DataTypes
 {
     internal class TriStateType : GH_Goo<int>
     {
-        // Example class for a custom DataType in Grasshopper
-        // https://developer.rhino3d.com/guides/grasshopper/simple-data-types/#an-example-type
+        // Simplified constructors and refactored parsing logic for improved readability and maintainability.
 
-
-        // CONSTRUCTORS***********************************
-        // Default Constructor; sets the state to Unknown.
-        public TriStateType()
+        public TriStateType(int triStateValue = -1) // Default value of -1 signifies unknown state.
         {
-            this.Value = -1;
+            Value = NormalizeValue(triStateValue);
         }
 
-        // Constructor with intial value of type int
-        public TriStateType(int triStateValue)
+        // Parsing string to tri-state logic moved to a separate method.
+        public TriStateType(string triStateValue) : this(ParseStringValue(triStateValue)) { }
+
+        // Directly use boolean to int conversion, removing redundant else check.
+        public TriStateType(bool triStateValue) : this(triStateValue ? 1 : 0) { }
+
+        // Constructor with double value simplified using ternary operations.
+        public TriStateType(double triStateValue) : this(triStateValue > 0 ? 1 : triStateValue == 0 ? 0 : -1) { }
+
+        // Copy constructor simply clones the value.
+        public TriStateType(TriStateType triStateSource) : this(triStateSource.Value) { }
+
+        // Ensures value is within [-1, 1] range.
+        private static int NormalizeValue(int value)
         {
-            this.Value = triStateValue;
+            return Math.Clamp(value, -1, 1);
+            
         }
 
-        public TriStateType(Grasshopper.Kernel.Types.GH_Integer triStateValue)
+        // Parses a string to a tri-state value.
+        private static int ParseStringValue(string value)
         {
-            this.Value = triStateValue;
-        }
-
-        // Constructor with initial value of type string
-        public TriStateType(string triStateValue)
-        {
-            switch (triStateValue.ToUpperInvariant())
+            switch (value.ToUpperInvariant())
             {
                 case "TRUE":
                 case "T":
                 case "YES":
                 case "Y":
-                    this.Value = 1;
-                    break;
-
+                    return 1;
                 case "FALSE":
                 case "F":
                 case "NO":
                 case "N":
-                    this.Value = 0;
-                    break;
-
+                    return 0;
                 case "UNKNOWN":
                 case "UNSET":
                 case "MAYBE":
                 case "DUNNO":
                 case "?":
-                    this.Value = -1;
-                    break;
+                default:
+                    return -1;
             }
-        }
-
-        // Constructor with initial value of type bool
-        public TriStateType(bool triStateValue)
-        {
-            if (triStateValue) { this.Value = 1; }
-            if (!triStateValue) { this.Value = 0; }
-            else { this.Value = -1; }
-        }
-
-        // Constructor with initial value of type double
-        public TriStateType(double triStateValue)
-        {
-            if (triStateValue > 0) { this.Value = 1; }
-            else if (triStateValue == 0) { this.Value = 0; }
-            else { this.Value = -1; }
-        }
-
-        // Copy Constructor
-        public TriStateType(TriStateType triStateSource)
-        {
-            this.Value = triStateSource.Value;
         }
 
         // Duplication method (technically not a constructor)
@@ -92,7 +71,7 @@ namespace EnneadTabForGH.DataTypes
         }
 
         // PROPERTY FORMATTERS***********************************
-        // Override the Value property inhertied from GH_Goo<T> to strip non-sensical states
+        // Override the Value property inherited from GH_Goo<T> to strip non-sensical states
         public override int Value
         {
             get { return base.Value; }
