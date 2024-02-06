@@ -1,11 +1,4 @@
 ﻿using System;
-using static System.Math;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 
@@ -13,54 +6,61 @@ namespace EnneadTabForGH.DataTypes
 {
     internal class TriStateType : GH_Goo<int>
     {
-        // Simplified constructors and refactored parsing logic for improved readability and maintainability.
-
-        public TriStateType(int triStateValue = -1) // Default value of -1 signifies unknown state.
+         // Default constructor
+        public TriStateType() 
         {
-            Value = NormalizeValue(triStateValue);
+            Value = -1;
         }
 
-        // Parsing string to tri-state logic moved to a separate method.
-        public TriStateType(string triStateValue) : this(ParseStringValue(triStateValue)) { }
+        // Integer overload
+        public TriStateType(GH_Integer triStateValue) 
+        {
+            //Value = NormalizeValue(triStateValue);
+            Value = triStateValue.Value;
+        }
 
-        // Directly use boolean to int conversion, removing redundant else check.
-        public TriStateType(bool triStateValue) : this(triStateValue ? 1 : 0) { }
+        // String overload
+        public TriStateType(GH_String triStateValue) : this(ParseStringValue(triStateValue)) { }
 
-        // Constructor with double value simplified using ternary operations.
-        public TriStateType(double triStateValue) : this(triStateValue > 0 ? 1 : triStateValue == 0 ? 0 : -1) { }
+        // Boolean overload
+        public TriStateType(GH_Boolean triStateValue) : this(triStateValue.Value ? new GH_Integer(1) : new GH_Integer(0)) { }
 
-        // Copy constructor simply clones the value.
-        public TriStateType(TriStateType triStateSource) : this(triStateSource.Value) { }
+        // Double overload
+        public TriStateType(GH_Number triStateValue) : this(triStateValue.Value > 0 ? new GH_Integer(1) : triStateValue.Value == 0 ? new GH_Integer(0) : new GH_Integer(-1)) { }
+
+        // Copy constructor
+        public TriStateType(TriStateType triStateSource) : this(new GH_Integer(triStateSource.Value)) { }
 
         // Ensures value is within [-1, 1] range.
-        private static int NormalizeValue(int value)
-        {
-            return Math.Clamp(value, -1, 1);
-            
-        }
+        //private static int NormalizeValue(GH_Integer Val)
+        //{
+        //    if (Val.Value <= -1) { return -1; }
+        //    if (Val.Value >= 1) { return 1; }
+        //    return 0;            
+        //}
 
         // Parses a string to a tri-state value.
-        private static int ParseStringValue(string value)
+        private static GH_Integer ParseStringValue(GH_String Val)
         {
-            switch (value.ToUpperInvariant())
+            switch (Val.Value.ToUpperInvariant())
             {
                 case "TRUE":
                 case "T":
                 case "YES":
                 case "Y":
-                    return 1;
+                    return new GH_Integer(1);
                 case "FALSE":
                 case "F":
                 case "NO":
                 case "N":
-                    return 0;
+                    return new GH_Integer(0);
                 case "UNKNOWN":
                 case "UNSET":
                 case "MAYBE":
                 case "DUNNO":
                 case "?":
                 default:
-                    return -1;
+                    return new GH_Integer(-1);
             }
         }
 
