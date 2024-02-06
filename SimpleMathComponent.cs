@@ -14,7 +14,7 @@ namespace EnneadTabForGH
         public SimpleMathComponent()
           : base("Simple Math Component", "SimpleMath",
               "SinCosTan",
-              "EnneadTab", "Util")
+              "Ennead", "Util")
         {
         }
 

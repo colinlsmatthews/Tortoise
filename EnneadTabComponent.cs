@@ -18,7 +18,7 @@ namespace EnneadTabForGH
         public EnneadTabComponent()
           : base("SampleComponent", "ASpi",
             "Construct an Archimedean, or arithmetic, spiral given its radii and number of turns.",
-            "EnneadTab", "Util")
+            "Ennead", "Util")
         {
         }
 
