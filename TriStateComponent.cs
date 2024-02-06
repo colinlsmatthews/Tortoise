@@ -35,7 +35,7 @@ namespace EnneadTabForGH
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.Register_GenericParam("TriState", "T", "TriState value of the input");
-            pManager.Register_GenericParam("Hard-coded TriState", "TT", "Hard-coded TriState value");
+            pManager.Register_GenericParam("Hard-coded TriState", "TT", "Hard-coded TriState value (should be unknown)");
         }
 
         /// <summary>
@@ -56,10 +56,6 @@ namespace EnneadTabForGH
             string inputTypeString = input.GetType().ToString();
             switch (inputTypeString)
             {
-                case "System.String":
-                case "System.Int32":
-                case "System.Double":
-                case "System.Boolean":
                 case "Grasshopper.Kernel.Types.GH_String":
                 case "Grasshopper.Kernel.Types.GH_Integer":
                 case "Grasshopper.Kernel.Types.GH_Number":
@@ -67,6 +63,7 @@ namespace EnneadTabForGH
                     // Create and set a new TriStateType instance based on the input
                     TriStateType tri = new TriStateType(input);
                     DA.SetData(0, tri);
+                    DA.SetData(1, new TriStateType());
                     break;
                 default:
                     // Set error message for unsupported types
