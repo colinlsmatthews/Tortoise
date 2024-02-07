@@ -2,11 +2,11 @@
 using System.Data;
 using Grasshopper.Kernel;
 
-namespace EnneadTabForGH
+namespace Tortoise
 {
     public class MyFirstComponent : GH_Component
     {
-        public MyFirstComponent() : base("MyFirst", "MFC", "My first component", "Ennead", "Util")
+        public MyFirstComponent() : base("MyFirst", "MFC", "My first component", "Tortoise", "Util")
         {
 
         }

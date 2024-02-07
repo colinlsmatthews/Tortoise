@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace EnneadTabForGH
+namespace Tortoise
 {
     public class SimpleGeoComponent : GH_Component
     {
@@ -14,7 +14,7 @@ namespace EnneadTabForGH
         public SimpleGeoComponent()
           : base("Simple Geometry Component", "SimpleGeo",
               "A simple geometry component",
-              "Ennead", "Util")
+              "Tortoise", "Util")
         {
         }
 

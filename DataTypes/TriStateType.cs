@@ -2,7 +2,7 @@
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 
-namespace EnneadTabForGH.DataTypes
+namespace Tortoise.DataTypes
 {
     internal class TriStateType : GH_Goo<int>
     {

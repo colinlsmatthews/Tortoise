@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
-using EnneadTabForGH.DataTypes;
+using Tortoise.DataTypes;
 using Microsoft.CSharp;
 
-namespace EnneadTabForGH
+namespace Tortoise
 {
     public class TriStateComponent : GH_Component
     {
@@ -17,7 +17,7 @@ namespace EnneadTabForGH
         public TriStateComponent()
           : base("TriState Conversion", "TriState",
               "Converts strings and numbers to a tri-state value: \"True\",\"False\", or \"Unknown\"",
-              "Ennead", "Util")
+              "Tortoise", "Util")
         {
         }
 

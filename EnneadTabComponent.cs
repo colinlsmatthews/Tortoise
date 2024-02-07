@@ -4,7 +4,7 @@ using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 
-namespace EnneadTabForGH
+namespace Tortoise
 {
     public class EnneadTabComponent : GH_Component
     {
@@ -18,7 +18,7 @@ namespace EnneadTabForGH
         public EnneadTabComponent()
           : base("SampleComponent", "ASpi",
             "Construct an Archimedean, or arithmetic, spiral given its radii and number of turns.",
-            "Ennead", "Util")
+            "Tortoise", "Util")
         {
         }
 

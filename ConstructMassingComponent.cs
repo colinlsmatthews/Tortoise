@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace EnneadTabForGH
+namespace Tortoise
 {
     public class ConstructMassingComponent : GH_Component
     {
@@ -14,7 +14,7 @@ namespace EnneadTabForGH
         public ConstructMassingComponent()
           : base("Construct Massing", "Massing",
               "Construct a Massing object from grids, levels, and facade geometry",
-              "Ennead", "Design Options")
+              "Tortoise", "Design Options")
         {
         }
 
