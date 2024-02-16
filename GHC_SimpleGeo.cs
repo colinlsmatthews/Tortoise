@@ -6,12 +6,12 @@ using Rhino.Geometry;
 
 namespace Tortoise
 {
-    public class SimpleGeoComponent : GH_Component
+    public class GHC_SimpleGeo : GH_Component
     {
         /// <summary>
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
-        public SimpleGeoComponent()
+        public GHC_SimpleGeo()
           : base("Simple Geometry Component", "SimpleGeo",
               "A simple geometry component",
               "Tortoise", "Util")

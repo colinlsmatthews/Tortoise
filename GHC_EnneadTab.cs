@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Tortoise
 {
-    public class EnneadTabComponent : GH_Component
+    public class GHC_EnneadTab : GH_Component
     {
         /// <summary>
         /// Each implementation of GH_Component must provide a public 
@@ -15,7 +15,7 @@ namespace Tortoise
         /// Subcategory the panel. If you use non-existing tab or panel names, 
         /// new tabs/panels will automatically be created.
         /// </summary>
-        public EnneadTabComponent()
+        public GHC_EnneadTab()
           : base("SampleComponent", "ASpi",
             "Construct an Archimedean, or arithmetic, spiral given its radii and number of turns.",
             "Tortoise", "Util")

@@ -4,9 +4,9 @@ using Grasshopper.Kernel;
 
 namespace Tortoise
 {
-    public class MyFirstComponent : GH_Component
+    public class GHC_MyFirstComponent : GH_Component
     {
-        public MyFirstComponent() : base("MyFirst", "MFC", "My first component", "Tortoise", "Util")
+        public GHC_MyFirstComponent() : base("MyFirst", "MFC", "My first component", "Tortoise", "Util")
         {
 
         }

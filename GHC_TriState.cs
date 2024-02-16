@@ -9,12 +9,12 @@ using Microsoft.CSharp;
 
 namespace Tortoise
 {
-    public class TriStateComponent : GH_Component
+    public class GHC_TriState : GH_Component
     {
         /// <summary>
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
-        public TriStateComponent()
+        public GHC_TriState()
           : base("TriState Conversion", "TriState",
               "Converts strings and numbers to a tri-state value: \"True\",\"False\", or \"Unknown\"",
               "Tortoise", "Util")
