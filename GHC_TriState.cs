@@ -61,9 +61,9 @@ namespace Tortoise
                 case "Grasshopper.Kernel.Types.GH_Number":
                 case "Grasshopper.Kernel.Types.GH_Boolean":
                     // Create and set a new TriStateType instance based on the input
-                    TriStateType tri = new TriStateType(input);
+                    TriState tri = new TriState(input);
                     DA.SetData(0, tri);
-                    DA.SetData(1, new TriStateType());
+                    DA.SetData(1, new TriState());
                     break;
                 default:
                     // Set error message for unsupported types

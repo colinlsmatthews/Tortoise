@@ -4,32 +4,32 @@ using Grasshopper.Kernel.Types;
 
 namespace Tortoise.DataTypes
 {
-    internal class TriStateType : GH_Goo<int>
+    internal class TriState : GH_Goo<int>
     {
          // Default constructor
-        public TriStateType() 
+        public TriState() 
         {
             Value = -1;
         }
 
         // Integer overload
-        public TriStateType(GH_Integer triStateValue) 
+        public TriState(GH_Integer triStateValue) 
         {
             //Value = NormalizeValue(triStateValue);
             Value = triStateValue.Value;
         }
 
         // String overload
-        public TriStateType(GH_String triStateValue) : this(ParseStringValue(triStateValue)) { }
+        public TriState(GH_String triStateValue) : this(ParseStringValue(triStateValue)) { }
 
         // Boolean overload
-        public TriStateType(GH_Boolean triStateValue) : this(triStateValue.Value ? new GH_Integer(1) : new GH_Integer(0)) { }
+        public TriState(GH_Boolean triStateValue) : this(triStateValue.Value ? new GH_Integer(1) : new GH_Integer(0)) { }
 
         // Double overload
-        public TriStateType(GH_Number triStateValue) : this(triStateValue.Value > 0 ? new GH_Integer(1) : triStateValue.Value == 0 ? new GH_Integer(0) : new GH_Integer(-1)) { }
+        public TriState(GH_Number triStateValue) : this(triStateValue.Value > 0 ? new GH_Integer(1) : triStateValue.Value == 0 ? new GH_Integer(0) : new GH_Integer(-1)) { }
 
         // Copy constructor
-        public TriStateType(TriStateType triStateSource) : this(new GH_Integer(triStateSource.Value)) { }
+        public TriState(TriState triStateSource) : this(new GH_Integer(triStateSource.Value)) { }
 
         // Ensures value is within [-1, 1] range.
         //private static int NormalizeValue(GH_Integer Val)
@@ -67,7 +67,7 @@ namespace Tortoise.DataTypes
         // Duplication method (technically not a constructor)
         public override IGH_Goo Duplicate()
         {
-            return new TriStateType(this);
+            return new TriState(this);
         }
 
         // PROPERTY FORMATTERS***********************************
