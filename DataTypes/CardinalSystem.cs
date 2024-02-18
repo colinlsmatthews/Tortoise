@@ -11,23 +11,29 @@ namespace Tortoise.DataTypes
 {
     internal class CardinalSystem : GH_Goo<Vector2d>
     {
+        // Properties
+        public Vector2d TrueNorth { get; set; }
+        public Vector2d ProjectNorth { get; set; }
+        
         // Default constructor
         public CardinalSystem()
         {
-            Value = new Vector2d(0, 1);
+            TrueNorth = new Vector2d(0, 1);
+            ProjectNorth = new Vector2d(0, 1);
         }
 
-        // Number overload
-        //public CardinalSystem(GH_Number input)
-        //{
-        //    double inputVal = input.Value;
-        //    double inputRad = Rhino.RhinoMath.ToRadians(inputVal);
-        //}
+        // Vector overload
+        public CardinalSystem(GH_Vector trueInput, GH_Vector projectInput)
+        {
+            TrueNorth = new Vector2d(trueInput.Value.X, trueInput.Value.Y);
+            ProjectNorth = new Vector2d(projectInput.Value.X, projectInput.Value.Y);
+        }
 
         // Copy constructor
         public CardinalSystem(CardinalSystem source)
         {
-            Value = source.Value;
+            TrueNorth = source.TrueNorth;
+            ProjectNorth = source.ProjectNorth;
         }
 
         // Duplication method (technically not a constructor)
@@ -36,6 +42,15 @@ namespace Tortoise.DataTypes
             return new CardinalSystem(this);
         }
 
+        public double DirectionDegrees(Vector2d direction)
+        {
+            double theta = RhinoMath.ToDegrees(Math.Atan2(direction.X, direction.Y));
+            if (theta < 0)
+            {
+                theta += 360;
+            }
+            return theta;
+        }
 
         // FORMATTERS
         // CardinalSystem instances are always valid.
@@ -56,7 +71,11 @@ namespace Tortoise.DataTypes
 
         public override string ToString()
         {
-            return "Cardinal System";
+            double tn = Math.Round(DirectionDegrees(TrueNorth), 3);
+            string TN = tn.ToString();
+            double pn = Math.Round(DirectionDegrees(ProjectNorth), 3);
+            string PN = pn.ToString();
+            return $"CardinalSystem_TrueNorth:{TN}°_ProjectNorth:{PN}°";
         }
     }
 }
