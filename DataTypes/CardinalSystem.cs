@@ -13,13 +13,25 @@ namespace Tortoise.DataTypes
     {
         // Properties
         public Vector2d TrueNorth { get; set; }
+        public Vector2d TrueWest { get; set; }
+        public Vector2d TrueSouth { get; set; }
+        public Vector2d TrueEast { get; set; }
         public Vector2d ProjectNorth { get; set; }
+        public Vector2d ProjectWest { get; set; }
+        public Vector2d ProjectSouth { get; set; }
+        public Vector2d ProjectEast { get; set; }
         
         // Default constructor
         public CardinalSystem()
         {
             TrueNorth = new Vector2d(0, 1);
             ProjectNorth = new Vector2d(0, 1);
+            TrueWest = West(TrueNorth);
+            TrueSouth = South(TrueNorth);
+            TrueEast = East(TrueNorth);
+            ProjectWest = West(ProjectNorth);
+            ProjectSouth = South(ProjectNorth);
+            ProjectEast = East(ProjectNorth);
         }
 
         // Vector overload
@@ -27,6 +39,12 @@ namespace Tortoise.DataTypes
         {
             TrueNorth = new Vector2d(trueInput.Value.X, trueInput.Value.Y);
             ProjectNorth = new Vector2d(projectInput.Value.X, projectInput.Value.Y);
+            TrueWest = West(TrueNorth);
+            TrueSouth = South(TrueNorth);
+            TrueEast = East(TrueNorth);
+            ProjectWest = West(ProjectNorth);
+            ProjectSouth = South(ProjectNorth);
+            ProjectEast = East(ProjectNorth);
         }
 
         // Copy constructor
@@ -34,12 +52,34 @@ namespace Tortoise.DataTypes
         {
             TrueNorth = source.TrueNorth;
             ProjectNorth = source.ProjectNorth;
+            TrueWest = West(TrueNorth);
+            TrueSouth = South(TrueNorth);
+            TrueEast = East(TrueNorth);
+            ProjectWest = West(ProjectNorth);
+            ProjectSouth = South(ProjectNorth);
+            ProjectEast = East(ProjectNorth);
         }
 
         // Duplication method (technically not a constructor)
-        public override IGH_Goo Duplicate()
+        public override IGH_Goo Duplicate() => new CardinalSystem(this);
+
+        public Vector2d West(Vector2d north)
         {
-            return new CardinalSystem(this);
+            Vector2d west = new Vector2d(north.X, north.Y);
+            west.Rotate(-Math.PI * 0.5);
+            return west;
+        }
+        public Vector2d South(Vector2d north)
+        {
+            Vector2d south = new Vector2d(north.X, north.Y);
+            south.Rotate(Math.PI);
+            return south;
+        }
+        public Vector2d East(Vector2d north)
+        {
+            Vector2d east = new Vector2d(north.X, north.Y);
+            east.Rotate(Math.PI * 0.5);
+            return east;
         }
 
         public double DirectionDegrees(Vector2d direction)
