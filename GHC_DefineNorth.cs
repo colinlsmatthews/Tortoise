@@ -75,7 +75,7 @@ namespace Tortoise
                 case "Grasshopper.Kernel.Types.GH_Number":
                     double trueVal = trueNorthInput.Value;
                     double trueRad = RhinoMath.ToRadians(trueVal);
-                    trueNorth = new GH_Vector(new Vector3d(Math.Cos(trueRad), Math.Sin(trueRad), 0));
+                    trueNorth = new GH_Vector(new Vector3d(Math.Sin(trueRad), Math.Cos(trueRad), 0));
                     break;
                 case "Grasshopper.Kernel.Types.GH_Curve":
                     if (!trueNorthInput.Value.IsLinear())
