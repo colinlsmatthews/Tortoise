@@ -9,14 +9,14 @@ using Grasshopper.Kernel.Types;
 
 namespace Tortoise
 {
-    public class GHC_DefineNorth : GH_Component
+    public class GHC_ConstructCardinal : GH_Component
     {
         /// <summary>
         /// Initializes a new instance of the GHC_DefineNorth class.
         /// </summary>
-        public GHC_DefineNorth()
-          : base("DefineNorth", "North",
-              "Define true north and project north. Acceptable inputs include line curves, numbers, and vectors.",
+        public GHC_ConstructCardinal()
+          : base("Construct Cardinal System", "Cardinal",
+              "Define cardinal system for project. Input true north and project north. Acceptable inputs include line curves, numbers, and vectors.",
               "Tortoise", "Project")
         {
         }
