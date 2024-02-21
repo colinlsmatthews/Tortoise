@@ -23,6 +23,7 @@ namespace Tortoise
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
+            // Add input parameters
         }
 
         /// <summary>
