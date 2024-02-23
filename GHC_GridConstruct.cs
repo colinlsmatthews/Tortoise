@@ -10,6 +10,7 @@ namespace Tortoise
 {
     public class GHC_GridConstruct : GH_Component
     {
+        // constructor
         public GHC_GridConstruct()
           : base("Construct Grid", "Grid",
               "Construct a massing grid from curves and text",
