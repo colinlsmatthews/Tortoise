@@ -11,9 +11,6 @@ namespace Tortoise
 {
     public class GHC_CardinalConstruct : GH_Component
     {
-        /// <summary>
-        /// Initializes a new instance of the GHC_CardinalConstruct class.
-        /// </summary>
         public GHC_CardinalConstruct()
           : base("Construct Cardinal System", "Cardinal",
               "Define cardinal system for project. Input true north and project north. Acceptable inputs include line curves, numbers, and vectors.",
