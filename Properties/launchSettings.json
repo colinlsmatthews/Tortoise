@@ -2,8 +2,9 @@
   "profiles": {
     "Tortoise": {
       "commandName": "Executable",
-      "executablePath": "C:\\Program Files\\Rhino 8\\System\\Rhino.exe",
-      "commandLineArgs": "/netfx"
+      "executablePath": "C:\\Program Files\\Rhino 7\\System\\Rhino.exe",
+      "commandLineArgs": "/netfx\r\n/nosplash\r\n/runscript=\"_Open C:\\Users\\colin.matthews\\source\\repos\\Tortoise\\dev\\dev.3dm\"\r\n/runscript=\"_Open C:\\Users\\colin.matthews\\source\\repos\\Tortoise\\dev\\dev.gh\"\r\n",
+      "remoteDebugEnabled": false
     }
   }
 }
