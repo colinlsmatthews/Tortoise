@@ -2,7 +2,7 @@
   "profiles": {
     "Tortoise": {
       "commandName": "Executable",
-      "executablePath": "C:\\Program Files\\Rhino 7\\System\\Rhino.exe",
+      "executablePath": "C:\\Program Files\\Rhino 8\\System\\Rhino.exe",
       "commandLineArgs": "/netfx\r\n/nosplash \"C:\\Users\\colin.matthews\\source\\repos\\Tortoise\\dev\\dev7.3dm\"\r\n/runscript=\"-grasshopper solver enable load document open C:\\Users\\colin.matthews\\source\\repos\\Tortoise\\dev\\dev.gh _enter\"\r\n",
       "remoteDebugEnabled": false
     }
