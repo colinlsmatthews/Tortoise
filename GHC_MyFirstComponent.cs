@@ -43,5 +43,11 @@ namespace Tortoise
         {
             get { return new Guid("b163eb33-a344-4892-835b-e48f5e1b5902"); }
         }
+
+        // Hide the component
+        public override GH_Exposure Exposure
+        {
+            get { return GH_Exposure.hidden; }
+        }
     }
 }
