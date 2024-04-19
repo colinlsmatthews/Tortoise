@@ -25,8 +25,10 @@ namespace Tortoise
         {
             pManager.AddGenericParameter("True North", "T", "Input to define true north direction", GH_ParamAccess.item);
             pManager.AddGenericParameter("Project North", "P", "Input to define project north direction", GH_ParamAccess.item);
+            pManager.AddTextParameter("Name", "N", "Optional name for the cardinal system", GH_ParamAccess.item);
             pManager[0].Optional = true;
             pManager[1].Optional = true;
+            pManager[2].Optional = true;
         }
 
         /// <summary>
@@ -56,6 +58,12 @@ namespace Tortoise
                 Vector3d projectPlaceholder = new Vector3d(0, 1, 0);
                 projectNorthInput = new GH_Vector(projectPlaceholder);
             }
+
+            // Set name to null if not provided
+            string nameInput = null;
+
+            // Get name input if provided
+            DA.GetData(2, ref nameInput);
 
             // Define datatype input vectors
             GH_Vector trueNorth = new GH_Vector();
@@ -120,7 +128,7 @@ namespace Tortoise
             }
 
             // Create and set a new CardinalSystem instance based on the input
-            DA.SetData(0, new CardinalSystem(trueNorth, projectNorth));
+            DA.SetData(0, new CardinalSystem(trueNorth, projectNorth, nameInput));
         }
 
         /// <summary>

@@ -31,6 +31,7 @@ namespace Tortoise
             pManager.AddVectorParameter("Project East", "PE", "The project east vector", GH_ParamAccess.item);
             pManager.AddVectorParameter("Project South", "PS", "The project south vector", GH_ParamAccess.item);
             pManager.AddVectorParameter("Project West", "PW", "The project west vector", GH_ParamAccess.item);
+            pManager.AddTextParameter("Name", "N", "The name of the cardinal system", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -47,6 +48,7 @@ namespace Tortoise
             DA.SetData(5, cardinalSystem.ProjectEast);
             DA.SetData(6, cardinalSystem.ProjectSouth);
             DA.SetData(7, cardinalSystem.ProjectWest);
+            DA.SetData(8, cardinalSystem.Name);
         }
 
         protected override System.Drawing.Bitmap Icon

@@ -3,9 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <Version>1.0</Version>
+	<LangVersion>preview</LangVersion>
     <Title>Tortoise</Title>
     <Description>Description of Tortoise</Description>
     <TargetExt>.gha</TargetExt>
+	 <Nullable>enable</Nullable>
   </PropertyGroup>
   
   <ItemGroup>
