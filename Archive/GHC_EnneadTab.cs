@@ -4,7 +4,7 @@ using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 
-namespace Tortoise
+namespace Tortoise.Archive
 {
     public class GHC_EnneadTab : GH_Component
     {
@@ -25,7 +25,7 @@ namespace Tortoise
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             // Use the pManager object to register your input parameters.
             // You can often supply default values when creating parameters.
@@ -44,7 +44,7 @@ namespace Tortoise
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             // Use the pManager object to register your output parameters.
             // Output parameters do not have default values, but they too must have the correct access type.
@@ -101,7 +101,7 @@ namespace Tortoise
             DA.SetData(0, spiral);
         }
 
-        Curve CreateSpiral(Plane plane, double r0, double r1, Int32 turns)
+        Curve CreateSpiral(Plane plane, double r0, double r1, int turns)
         {
             Line l0 = new Line(plane.Origin + r0 * plane.XAxis, plane.Origin + r1 * plane.XAxis);
             Line l1 = new Line(plane.Origin - r0 * plane.XAxis, plane.Origin - r1 * plane.XAxis);

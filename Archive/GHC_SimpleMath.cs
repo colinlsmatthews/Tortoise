@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace Tortoise
+namespace Tortoise.Archive
 {
     public class GHC_SimpleMath : GH_Component
     {
@@ -21,7 +21,7 @@ namespace Tortoise
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddNumberParameter("Angle", "A", "The angle to measure", GH_ParamAccess.item);
             pManager.AddBooleanParameter("Radians", "R", "Work in Radians", GH_ParamAccess.item, true);
@@ -31,7 +31,7 @@ namespace Tortoise
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddNumberParameter("Sin", "S", "The sine of the angle", GH_ParamAccess.item);
             pManager.AddNumberParameter("Cos", "C", "The cosine of the angle", GH_ParamAccess.item);

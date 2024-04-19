@@ -2,7 +2,7 @@
 using System.Data;
 using Grasshopper.Kernel;
 
-namespace Tortoise
+namespace Tortoise.Archive
 {
     public class GHC_MyFirstComponent : GH_Component
     {
@@ -11,13 +11,13 @@ namespace Tortoise
 
         }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("String", "S", "String to reverse", GH_ParamAccess.item);
             // throw new NotImplementedException();
         }
 
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter("Reversed", "R", "Reversed string", GH_ParamAccess.item);
             // throw new NotImplementedException();
@@ -26,7 +26,7 @@ namespace Tortoise
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             string data = null;
-            if (!DA.GetData(0, ref data)) {  return; }
+            if (!DA.GetData(0, ref data)) { return; }
 
             if (data == null) { return; }
             if (data.Length == 0) { return; }
