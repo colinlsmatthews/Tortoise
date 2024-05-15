@@ -6,15 +6,15 @@ using Rhino.Geometry;
 
 namespace Tortoise
 {
-    public class GHC_ConstructMassing : GH_Component
+    public class GHC_Massing : GH_Component
     {
         /// <summary>
-        /// Initializes a new instance of the ConstructMassingComponent class.
+        /// Initializes a new instance of the GHC_Massing class.
         /// </summary>
-        public GHC_ConstructMassing()
-          : base("Construct Massing", "Massing",
-              "Construct a Massing object from grids, levels, and facade geometry",
-              "Tortoise", "Design Options")
+        public GHC_Massing()
+          : base("Define Massing", "Massing",
+              "Description",
+              "Category", "Subcategory")
         {
         }
 
@@ -23,10 +23,6 @@ namespace Tortoise
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            // Add input parameters
-            pManager.AddGenericParameter("Cardinal System", "C", "The cardinal system for the massing", GH_ParamAccess.item);
-            pManager.AddBrepParameter("Facade Surfaces", "F", "The facade surfaces of the massing", GH_ParamAccess.list);
-            pManager.AddGenericParameter("Grid", "G", "Structural grid", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -62,7 +58,7 @@ namespace Tortoise
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("86BFD4C9-B607-4B33-A0C6-925CB03DC809"); }
+            get { return new Guid("33F9586F-BC92-4BBD-91C4-F613D9EFA4D4"); }
         }
     }
 }
