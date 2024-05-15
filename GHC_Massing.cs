@@ -12,9 +12,7 @@ namespace Tortoise
         /// Initializes a new instance of the GHC_Massing class.
         /// </summary>
         public GHC_Massing()
-          : base("Define Massing", "Massing",
-              "Description",
-              "Category", "Subcategory")
+          : base("Define Massing", "Massing", "Massing", "Tortoise", "Project")
         {
         }
 
@@ -23,6 +21,19 @@ namespace Tortoise
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
+            pManager.AddGenericParameter("Massing", "M", "Massing definition", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Cardinal System", "C", "The cardinal system for this massing", GH_ParamAccess.item);
+            pManager.AddBrepParameter("Facade Surfaces", "F", "The facade surfaces of this massing", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Grid", "G", "The structural grid for this massing", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Levels", "L", "The levels for this massing", GH_ParamAccess.item);
+            pManager.AddTextParameter("Name", "N", "The name of this massing", GH_ParamAccess.item);
+            pManager[0].Optional = true;
+            pManager[1].Optional = true;
+            pManager[2].Optional = true;
+            pManager[3].Optional = true;
+            pManager[4].Optional = true;
+            pManager[5].Optional = true;
+            // Add conditional warning for missing inputs when massing is not provided
         }
 
         /// <summary>
@@ -30,6 +41,12 @@ namespace Tortoise
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
+            pManager.AddGenericParameter("Massing", "M", "Massing definition", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Cardinal System", "C", "The cardinal system for this massing", GH_ParamAccess.item);
+            pManager.AddBrepParameter("Facade Surfaces", "F", "The facade surfaces of this massing", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Grid", "G", "The structural grid for this massing", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Levels", "L", "The levels for this massing", GH_ParamAccess.item);
+            pManager.AddTextParameter("Name", "N", "The name of this massing", GH_ParamAccess.item);
         }
 
         /// <summary>

@@ -48,7 +48,10 @@ namespace Tortoise.DataTypes
 
         // BEGIN METHODS
         // Duplicate method
-        public override IGH_Goo Duplicate() => new Massing(this);
+        public override IGH_Goo Duplicate()
+        {
+            return new Massing(this);
+        }
 
         // END METHODS
 
