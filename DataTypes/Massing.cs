@@ -7,17 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tortoise.DataTypes;
 
 namespace Tortoise.DataTypes
 {
     internal class Massing : GH_Goo<Brep>
     {
         // Properties
-        public Tortoise.DataTypes.CardinalSystem Cardinal { get; set; }
+        public CardinalSystem ?Cardinal { get; set; }
         public List<Surface> FacadeSurfaces { get; set; }
-        public List<string> FacadeOrientations { get; set; }
-        public List<Surface> RoofSurfaces { get; set; }
-        public DataTree<Curve> Grid { get; set; }
+        public List<string> ?FacadeOrientations { get; private set; }
+        public List<Surface> ?RoofSurfaces { get; set; }
+        public Grid Grid { get; set; }
         public List<double> Levels { get; set; }
         public string ?Name { get; set; }
 
@@ -25,15 +26,15 @@ namespace Tortoise.DataTypes
         // Default constructor
         public Massing()
         {
-            Cardinal = new Tortoise.DataTypes.CardinalSystem();
+            Cardinal = new CardinalSystem();
             FacadeSurfaces = new List<Surface>();
-            Grid = new DataTree<Curve>();
+            Grid = new DataTypes.Grid();
             Levels = new List<double>();
             Name = null;
         }
 
         // Geomety overload (no name)
-        public Massing(List<Surface> inputSurfaces, DataTree<Curve> inputGrid, List<double> inputLevels)
+        public Massing(List<Surface> inputSurfaces, Grid inputGrid, List<double> inputLevels)
         {
             FacadeSurfaces = inputSurfaces;
             Grid = inputGrid;
@@ -42,16 +43,31 @@ namespace Tortoise.DataTypes
         }
 
         // Geometry overload (with name)
+        public Massing(List<Surface> inputSurfaces, Grid inputGrid, List<double> inputLevels, string inputName)
+        {
+            FacadeSurfaces = inputSurfaces;
+            Grid = inputGrid;
+            Levels = inputLevels;
+            Name = inputName;
+        }
 
+        // Copy constructor
+        public Massing(Massing source)
+        {
+            Cardinal = source.Cardinal;
+            FacadeSurfaces = source.FacadeSurfaces;
+            FacadeOrientations = source.FacadeOrientations;
+            RoofSurfaces = source.RoofSurfaces;
+            Grid = source.Grid;
+            Levels = source.Levels;
+            Name = source.Name;
+        }
 
         // END CONSTRUCTORS
 
         // BEGIN METHODS
         // Duplicate method
-        public override IGH_Goo Duplicate()
-        {
-            return new Massing(this);
-        }
+        public override IGH_Goo Duplicate() => new Massing(this); 
 
         // END METHODS
 
