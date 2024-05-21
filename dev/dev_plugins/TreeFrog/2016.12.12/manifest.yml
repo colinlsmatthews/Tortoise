@@ -1,9 +1,0 @@
----
-name: treeFrog
-version: 1.0.0+0
-authors:
-- andheum@gmail.com
-description: some tree operations
-url: <url>
-secret:
-  id: d5974f47-3404-bc9c-2eb4-9472167a20bc

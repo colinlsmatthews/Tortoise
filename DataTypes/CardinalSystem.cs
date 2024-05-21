@@ -11,7 +11,7 @@ namespace Tortoise.DataTypes
 {
     internal class CardinalSystem : GH_Goo<Vector2d>
     {
-        // Properties
+        // BEGIN PROPERTIES
         public Vector2d TrueNorth { get; set; }
         public Vector2d TrueWest { get; set; }
         public Vector2d TrueSouth { get; set; }
@@ -20,7 +20,11 @@ namespace Tortoise.DataTypes
         public Vector2d ProjectWest { get; set; }
         public Vector2d ProjectSouth { get; set; }
         public Vector2d ProjectEast { get; set; }
+        public string ?Name { get; set; }
         
+        // END PROPERTIES
+
+        // BEGIN CONSTRUCTORS
         // Default constructor
         public CardinalSystem()
         {
@@ -32,10 +36,11 @@ namespace Tortoise.DataTypes
             ProjectWest = West(ProjectNorth);
             ProjectSouth = South(ProjectNorth);
             ProjectEast = East(ProjectNorth);
+            Name = null;
         }
 
         // Vector overload
-        public CardinalSystem(GH_Vector trueInput, GH_Vector projectInput)
+        public CardinalSystem(GH_Vector trueInput, GH_Vector projectInput, string nameInput)
         {
             TrueNorth = new Vector2d(trueInput.Value.X, trueInput.Value.Y);
             ProjectNorth = new Vector2d(projectInput.Value.X, projectInput.Value.Y);
@@ -45,6 +50,7 @@ namespace Tortoise.DataTypes
             ProjectWest = West(ProjectNorth);
             ProjectSouth = South(ProjectNorth);
             ProjectEast = East(ProjectNorth);
+            Name = nameInput;
         }
 
         // Copy constructor
@@ -58,8 +64,12 @@ namespace Tortoise.DataTypes
             ProjectWest = West(ProjectNorth);
             ProjectSouth = South(ProjectNorth);
             ProjectEast = East(ProjectNorth);
+            Name = source.Name;
         }
 
+        // END CONSTRUCTORS
+
+        // BEGIN METHODS
         // Duplication method (technically not a constructor)
         public override IGH_Goo Duplicate() => new CardinalSystem(this);
 
@@ -92,7 +102,9 @@ namespace Tortoise.DataTypes
             return theta;
         }
 
-        // FORMATTERS
+        // END METHODS
+
+        // BEGIN FORMATTERS
         // CardinalSystem instances are always valid.
         public override bool IsValid
         {
@@ -115,7 +127,13 @@ namespace Tortoise.DataTypes
             string TN = tn.ToString();
             double pn = Math.Round(DirectionDegrees(ProjectNorth), 3);
             string PN = pn.ToString();
+            if (Name != null)
+            {
+                return $"CardinalSystem_\"{Name}\":TrueNorth:{TN}°_ProjectNorth:{PN}°";
+            }
             return $"CardinalSystem_TrueNorth:{TN}°_ProjectNorth:{PN}°";
         }
+
+        // END FORMATTERS
     }
 }

@@ -3,7 +3,8 @@
     "Tortoise": {
       "commandName": "Executable",
       "executablePath": "C:\\Program Files\\Rhino 8\\System\\Rhino.exe",
-      "commandLineArgs": "/netfx\r\n/nosplash \"C:\\Users\\clsm\\source\\repos\\Tortoise\\dev\\dev.3dm\"\r\n/runscript=\"-grasshopper solver enable load document open \"C:\\Users\\clsm\\source\\repos\\Tortoise\\dev\\dev.gh _enter\""
+      "commandLineArgs": "/netfx\r\n/nosplash \"C:\\Users\\ColinMatthews\\source\\repos\\Tortoise\\dev\\dev.3dm\"\r\n/runscript=\"-grasshopper solver enable load document open C:\\Users\\ColinMatthews\\source\\repos\\Tortoise\\dev\\dev.gh _enter\"\r\n",
+      "remoteDebugEnabled": false
     }
   }
 }

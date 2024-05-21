@@ -24,6 +24,9 @@ namespace Tortoise
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             // Add input parameters
+            pManager.AddGenericParameter("Cardinal System", "C", "The cardinal system for the massing", GH_ParamAccess.item);
+            pManager.AddBrepParameter("Facade Surfaces", "F", "The facade surfaces of the massing", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Grid", "G", "Structural grid", GH_ParamAccess.item);
         }
 
         /// <summary>
